@@ -15,14 +15,20 @@ class ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc2 = segue.destination as? ViewController2 {
-            vc2.onSave = onSave
+            // 1.
+        //    vc2.onSave = onSave
+            
+            // 2.
+            vc2.onSave = { (Data) in
+                self.showInfoLabel.text = Data
+            }
         }
     }
     
 
-    func onSave(_ Data: String) -> () {
-        showInfoLabel.text = Data
-    }
+//    func onSave(_ Data: String) -> () {
+//        showInfoLabel.text = Data
+//    }
     
     @IBAction func goToNextView(_ sender: UIButton) {
         performSegue(withIdentifier: "goToNextView", sender: nil)
